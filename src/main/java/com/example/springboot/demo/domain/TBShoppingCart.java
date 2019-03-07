@@ -5,8 +5,8 @@ import java.util.Date;
 public class TBShoppingCart {
 
     private long id;
-    private Integer userId;
-    private Integer petsId;
+    private long userId;
+    private long petsId;
     private Integer nums;
 
     public long getId() {
@@ -17,19 +17,19 @@ public class TBShoppingCart {
         this.id = id;
     }
 
-    public Integer getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 
-    public Integer getPetsId() {
+    public long getPetsId() {
         return petsId;
     }
 
-    public void setPetsId(Integer petsId) {
+    public void setPetsId(long petsId) {
         this.petsId = petsId;
     }
 

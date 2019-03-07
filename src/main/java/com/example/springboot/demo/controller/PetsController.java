@@ -33,18 +33,24 @@ public class PetsController {
     public AjaxJSON getAllPets(@RequestParam Map<String,Object> param){
 
         AjaxJSON ajaxJSON=new AjaxJSON();
-        List<TBPets>tbPetsList=petsMapper.getAllPets();
 
-        //分页 需要分页功能添加pages:页数以及rows每页的size参数
-        if(param.get("pages")!=null||param.get("rows")!=null){
-            int pages= Integer.parseInt(param.get("pages").toString());
-            int rows= Integer.parseInt(param.get("rows").toString());
-            ajaxJSON.setObj(CurrPage.queryByPage(tbPetsList,pages,rows));
-        }else{
-            ajaxJSON.setObj(tbPetsList);
+        try {
+            List<TBPets>tbPetsList=petsMapper.getAllPets();
+
+            //分页 需要分页功能添加pages:页数以及rows每页的size参数
+            if(param.get("pages")!=null||param.get("rows")!=null){
+                int pages= Integer.parseInt(param.get("pages").toString());
+                int rows= Integer.parseInt(param.get("rows").toString());
+                ajaxJSON.setObj(CurrPage.queryByPage(tbPetsList,pages,rows));
+            }else{
+                ajaxJSON.setObj(tbPetsList);
+            }
+            ajaxJSON.setMsg("查询成功");
+
+        }catch (Exception e){
+            ajaxJSON.setSuccess(false);
+            ajaxJSON.setMsg("获取宠物信息失败"+e.getCause());
         }
-
-        ajaxJSON.setMsg("查询成功");
         return ajaxJSON;
     }
 
@@ -115,9 +121,13 @@ public class PetsController {
     public AjaxJSON delUsers(@RequestParam Map<String,Object> param){
         AjaxJSON ajaxJSON=new AjaxJSON();
 
-        petsMapper.delPet(param);
-        ajaxJSON.setMsg("删除成功");
-
+        try {
+            petsMapper.delPet(param);
+            ajaxJSON.setMsg("删除成功");
+        }catch (Exception e){
+            ajaxJSON.setSuccess(false);
+            ajaxJSON.setMsg("删除失败"+e.getCause());
+        }
         return ajaxJSON;
     }
 
