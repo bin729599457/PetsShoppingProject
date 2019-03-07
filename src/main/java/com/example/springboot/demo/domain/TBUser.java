@@ -1,5 +1,7 @@
 package com.example.springboot.demo.domain;
 
+import org.springframework.context.annotation.Bean;
+
 import java.util.Date;
 
 public class TBUser {
@@ -12,6 +14,9 @@ public class TBUser {
     private String phone;
     private Date createTime;
     private String address;
+
+    public TBUser() {
+    }
 
     public TBUser(Long id, String account, String password, String userName, Integer isRoot, String phone, Date createTime, String address) {
         this.id = id;

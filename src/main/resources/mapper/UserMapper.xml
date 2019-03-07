@@ -2,6 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.springboot.demo.dao.UserMapper" >
 
+    <select id="getSingleUsersInfo" resultType="java.util.Map">
+        SELECT account,user_name,phone,create_time,address FROM t_b_user WHERE id=#{id}
+    </select>
+
     <select id="getAllUsers" resultType="java.util.Map">
         SELECT id,account,user_name,is_root,phone,create_time,address FROM t_b_user
     </select>
@@ -9,6 +13,21 @@
     <select id="userLogin" parameterType="java.util.Map" resultType="java.util.Map">
       SELECT id FROM t_b_user WHERE account=#{account} AND password=#{password}
     </select>
+
+    <select id="forgetPassword" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT password FROM t_b_user WHERE account=#{account} AND phone=#{phone}
+    </select>
+
+    <update id="updateMsg" parameterType="java.util.Map">
+        UPDATE t_b_user
+        <trim prefix="set" suffixOverrides=",">
+            <if test="password!=null">password = #{password},</if>
+            <if test="userName!=null">user_name = #{userName},</if>
+            <if test="phone!=null">phone = #{phone},</if>
+            <if test="address!=null">address = #{address},</if>
+        </trim>
+        WHERE id=#{id}
+    </update>
 
     <insert id="addUser">
         INSERT INTO t_b_user(id,account,password,user_name,is_root,phone,create_time,address)VALUE

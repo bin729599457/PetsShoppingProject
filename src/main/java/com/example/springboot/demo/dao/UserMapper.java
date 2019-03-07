@@ -19,4 +19,10 @@ public interface UserMapper {
     void addUser(Map param);
 
     Map userLogin(Map param);
+
+    Map getSingleUsersInfo(Map param);
+
+    Map forgetPassword(Map param);
+
+    void updateMsg(Map param);
 }

@@ -40,37 +40,25 @@ public class UserController {
     public AjaxJSON add_user(@RequestParam Map<String,Object> param){
 
         AjaxJSON ajaxJSON=new AjaxJSON();
+        try {
+            String account=param.get("account").toString();
+            String password=param.get("password").toString();
+            String userName=param.get("userName").toString();
+            String phone=param.get("phone").toString();
 
-        long id= System.currentTimeMillis();
-        String account=param.get("account").toString();
-        String password=param.get("passWord").toString();
-        String userName=param.get("userName").toString();
-        Integer isRoot= Integer.valueOf(param.get("isRoot").toString());
-        String phone=param.get("phone").toString();
-        String address=param.get("address").toString();
-
-        if(account.isEmpty()||password.isEmpty()||userName.isEmpty()||phone.isEmpty()){
-            ajaxJSON.setMsg("用户资料输入不全，注册失败");
-            ajaxJSON.setSuccess(false);
-            return ajaxJSON;
-        }else {
-            TBUser tbUser=new TBUser(id,account,password,userName,isRoot,phone,new Date(),address);
-//            userService.addUser(tbUser);
-            Map<String,Object> paramMap=new HashMap<>();
-            paramMap.put("id",tbUser.getId());
-            paramMap.put("account",tbUser.getAccount());
-            paramMap.put("password",tbUser.getPassword());
-            paramMap.put("userName",tbUser.getUserName());
-            paramMap.put("isRoot",tbUser.getIsRoot());
-            paramMap.put("phone",tbUser.getPhone());
-            paramMap.put("createTime",tbUser.getCreateTime());
-            if(!tbUser.getAddress().isEmpty()){
-                paramMap.put("address",tbUser.getAddress());
+            if(account.isEmpty()||password.isEmpty()||userName.isEmpty()||phone.isEmpty()){
+                ajaxJSON.setMsg("用户资料输入不全，注册失败");
+                ajaxJSON.setSuccess(false);
+                return ajaxJSON;
             }else {
-                paramMap.put("address","");
+                param.put("id",System.currentTimeMillis());
+                param.put("createTime",new Date());
+                userMapper.addUser(param);
+                ajaxJSON.setMsg("用户添加成功");
             }
-            userMapper.addUser(paramMap);
-            ajaxJSON.setMsg("用户添加成功");
+        }catch (Exception e){
+            ajaxJSON.setSuccess(false);
+            ajaxJSON.setMsg("重复的用户名"+e.getCause());
         }
 
         return ajaxJSON;
@@ -97,11 +85,48 @@ public class UserController {
             paramMap.put("password",password);
             HashMap resultMap= (HashMap) userMapper.userLogin(paramMap);
             if(resultMap==null){
-                ajaxJSON.setMsg("帐号、密码输入错误");
+                ajaxJSON.setMsg("帐号、密码输入有误");
                 ajaxJSON.setSuccess(false);
             }else {
                 ajaxJSON.setMsg("登录成功");
             }
+        }
+        return ajaxJSON;
+    }
+
+    /**
+     * 用户修改个人信息(包括修改密码)
+     */
+    @RequestMapping(value = "updateMsg",method = RequestMethod.PUT)
+    public AjaxJSON updateMsg(@RequestParam Map<String,Object> param){
+        AjaxJSON ajaxJSON=new AjaxJSON();
+
+        try {
+            userMapper.updateMsg(param);
+            ajaxJSON.setMsg("修改成功");
+        }catch (Exception e){
+            ajaxJSON.setMsg("修改失败"+e.getCause());
+            ajaxJSON.setSuccess(false);
+        }
+
+        return ajaxJSON;
+    }
+
+    /**
+     * 管理员获取单个用户信息
+     */
+    @RequestMapping(value = "getSingleUsersInfo",method = RequestMethod.GET)
+    public AjaxJSON getSingleUsersInfo(@RequestParam Map<String,Object> param){
+
+        AjaxJSON ajaxJSON=new AjaxJSON();
+        HashMap resultMap= (HashMap) userMapper.getSingleUsersInfo(param);
+        if(resultMap==null){
+            ajaxJSON.setMsg("没有此用户");
+            ajaxJSON.setSuccess(false);
+
+        }else {
+            ajaxJSON.setObj(resultMap);
+            ajaxJSON.setMsg("查询成功");
         }
         return ajaxJSON;
     }
@@ -118,6 +143,31 @@ public class UserController {
         ajaxJSON.setObj(tbUserList);
         ajaxJSON.setMsg("查询成功");
 
+        return ajaxJSON;
+    }
+
+    /**
+     * 用户找回密码
+     */
+    @RequestMapping(value = "forgetPassword",method = RequestMethod.GET)
+    public AjaxJSON forgetPassword(@RequestParam Map<String,Object> param){
+
+        AjaxJSON ajaxJSON=new AjaxJSON();
+        String account=param.get("account").toString();
+        String phone=param.get("phone").toString();
+        if(account.isEmpty()||phone.isEmpty()){
+            ajaxJSON.setMsg("输入不能为空");
+            ajaxJSON.setSuccess(false);
+        }
+
+        HashMap<String,Object> resultMap= (HashMap<String, Object>) userMapper.forgetPassword(param);
+        if(resultMap!=null){
+            ajaxJSON.setObj(resultMap);
+            ajaxJSON.setMsg("找回成功");
+        }else {
+            ajaxJSON.setMsg("帐号、手机输入错误，找回失败");
+            ajaxJSON.setSuccess(false);
+        }
         return ajaxJSON;
     }
 }
