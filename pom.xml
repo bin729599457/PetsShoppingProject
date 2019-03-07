@@ -4,11 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.example.springboot</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>pets</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<!--<packaging>jar</packaging>-->
+	<packaging>jar</packaging>
 	<!-- 这里打成war包 若打jar，需将war改为jar -->
-	<packaging>war</packaging>
 
 	<name>demo</name>
 	<description>Demo project for Spring Boot</description>

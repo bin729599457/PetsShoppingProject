@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class TBUser {
 
-    private long id;
+    private Long id;
     private String account;
     private String password;
     private String userName;
@@ -13,7 +13,7 @@ public class TBUser {
     private Date createTime;
     private String address;
 
-    public TBUser(long id, String account, String password, String userName, Integer isRoot, String phone, Date createTime, String address) {
+    public TBUser(Long id, String account, String password, String userName, Integer isRoot, String phone, Date createTime, String address) {
         this.id = id;
         this.account = account;
         this.password = password;
@@ -28,7 +28,7 @@ public class TBUser {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
