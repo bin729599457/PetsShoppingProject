@@ -24,14 +24,6 @@ public class UserController {
     @Autowired
     UserMapper userMapper;
 
-//    @RequestMapping(value = "pic")
-//    public long pic() {
-//        //调用dao层
-//        TBUser user = userMapper.selectUserByName();
-//        return System.currentTimeMillis();
-//    }
-
-
     /**
      * 注册用户
      * @param param

@@ -29,7 +29,7 @@
         WHERE id=#{id}
     </update>
 
-    <insert id="addUser">
+    <insert id="addUser" parameterType="java.util.Map">
         INSERT INTO t_b_user(id,account,password,user_name,is_root,phone,create_time,address)VALUE
         (#{id},#{account},#{password},#{userName},#{isRoot},#{phone},#{createTime},#{address})
     </insert>

@@ -2,6 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.springboot.demo.dao.PetsMapper" >
 
+    <select id="getAllPets" resultType="java.util.List">
+        SELECT pets_desc,pets_price,pets_num,pets_img_url,is_hot FROM t_b_pets
+    </select>
 
+    <insert id="addPets" parameterType="java.util.Map">
+        INSERT INTO t_b_pets(id,pets_desc,pets_price,pets_num,img_path,is_hot)VALUE
+        (#{id},#{petsDesc},#{petsPrice},#{petsNum},#{imgPath},#{isHot})
+    </insert>
 
 </mapper>

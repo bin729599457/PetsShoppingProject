@@ -4,7 +4,7 @@ public class TBPets {
 
     private long id;
     private String petsDesc;
-    private String petsPrice;
+    private Integer petsPrice;
     private Integer petsNum;
     private String petsImgUrl;
     private Integer isHot;
@@ -25,11 +25,11 @@ public class TBPets {
         this.petsDesc = petsDesc;
     }
 
-    public String getPetsPrice() {
+    public Integer getPetsPrice() {
         return petsPrice;
     }
 
-    public void setPetsPrice(String petsPrice) {
+    public void setPetsPrice(Integer petsPrice) {
         this.petsPrice = petsPrice;
     }
 
