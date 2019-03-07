@@ -4,6 +4,7 @@ import com.example.springboot.demo.dao.UserMapper;
 import com.example.springboot.demo.domain.AjaxJSON;
 import com.example.springboot.demo.domain.TBUser;
 import com.example.springboot.demo.domain.User;
+import com.example.springboot.demo.util.CurrPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -132,8 +133,29 @@ public class UserController {
 
         List<TBUser> tbUserList=new ArrayList<>();
         tbUserList=userMapper.getAllUsers();
-        ajaxJSON.setObj(tbUserList);
+
+        //分页 需要分页功能添加pages:页数以及rows每页的size参数
+        if(param.get("pages")!=null||param.get("rows")!=null){
+            int pages= Integer.parseInt(param.get("pages").toString());
+            int rows= Integer.parseInt(param.get("rows").toString());
+            ajaxJSON.setObj(CurrPage.queryByPage(tbUserList,pages,rows));
+        }else {
+            ajaxJSON.setObj(tbUserList);
+        }
+
         ajaxJSON.setMsg("查询成功");
+        return ajaxJSON;
+    }
+
+    /**
+     * 管理员删除用户
+     */
+    @RequestMapping(value = "delUsers",method = RequestMethod.DELETE)
+    public AjaxJSON delUsers(@RequestParam Map<String,Object> param){
+        AjaxJSON ajaxJSON=new AjaxJSON();
+
+        userMapper.delUsers(param);
+        ajaxJSON.setMsg("删除成功");
 
         return ajaxJSON;
     }

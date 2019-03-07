@@ -34,4 +34,8 @@
         (#{id},#{account},#{password},#{userName},#{isRoot},#{phone},#{createTime},#{address})
     </insert>
 
+    <delete id="delUsers" parameterType="java.util.Map">
+        DELETE FROM t_b_user WHERE id=#{id}
+    </delete>
+
 </mapper>

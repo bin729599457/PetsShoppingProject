@@ -6,9 +6,29 @@
         SELECT pets_desc,pets_price,pets_num,pets_img_url,is_hot FROM t_b_pets
     </select>
 
+    <select id="getSinglePetInfo" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT pets_desc,pets_price,pets_num,pets_img_url,is_hot FROM t_b_pets WHERE id=#{id}
+    </select>
+
+    <update id="updateMsg" parameterType="java.util.Map">
+        UPDATE t_b_pets
+        <trim prefix="set" suffixOverrides=",">
+            <if test="petsDesc!=null">pets_desc = #{petsDesc},</if>
+            <if test="petsPrice!=null">pets_price = #{petsPrice},</if>
+            <if test="petsNum!=null">pets_num = #{petsNum},</if>
+            <if test="imgPath!=null">img_path = #{imgPath},</if>
+            <if test="isHot!=null">is_hot = #{isHot},</if>
+        </trim>
+        WHERE id=#{id}
+    </update>
+
     <insert id="addPets" parameterType="java.util.Map">
         INSERT INTO t_b_pets(id,pets_desc,pets_price,pets_num,img_path,is_hot)VALUE
         (#{id},#{petsDesc},#{petsPrice},#{petsNum},#{imgPath},#{isHot})
     </insert>
+
+    <delete id="delPet" parameterType="java.util.Map">
+        DELETE FROM t_b_pets WHERE id=#{id}
+    </delete>
 
 </mapper>

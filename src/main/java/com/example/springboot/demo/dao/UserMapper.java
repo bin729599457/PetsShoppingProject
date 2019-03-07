@@ -25,4 +25,6 @@ public interface UserMapper {
     Map forgetPassword(Map param);
 
     void updateMsg(Map param);
+
+    void delUsers(Map param);
 }

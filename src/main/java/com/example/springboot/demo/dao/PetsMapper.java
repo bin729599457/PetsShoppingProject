@@ -16,4 +16,10 @@ public interface PetsMapper {
 
     void addPets(Map param);
 
+    void updatePetMsg(Map param);
+
+    Map getSinglePetInfo(Map param);
+
+    void delPet(Map param);
+
 }
