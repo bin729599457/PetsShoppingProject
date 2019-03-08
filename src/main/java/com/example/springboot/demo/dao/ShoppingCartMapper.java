@@ -18,4 +18,8 @@ public interface ShoppingCartMapper {
 
     void delPetFromCart(Map param);
 
+    void updateCartNums(Map param);
+
+    Map isExistPets(Map param);
+
 }

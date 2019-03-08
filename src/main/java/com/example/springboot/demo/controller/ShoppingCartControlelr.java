@@ -33,9 +33,21 @@ public class ShoppingCartControlelr {
 
         AjaxJSON ajaxJSON=new AjaxJSON();
         try {
-            param.put("id",System.currentTimeMillis());
-            shoppingCartMapper.addCart(param);
-            ajaxJSON.setMsg("添加购物车成功");
+
+            //先进行查询用户购物车是否已经存在该商品
+            Map isExist=shoppingCartMapper.isExistPets(param);
+            //非空，购物车已经存在该商品
+            if(isExist!=null){
+                int num= (int) isExist.get("nums");
+                param.put("nums",++num);
+                shoppingCartMapper.updateCartNums(param);
+                ajaxJSON.setMsg("添加购物车成功");
+            }else {
+                param.put("id",System.currentTimeMillis());
+                shoppingCartMapper.addCart(param);
+                ajaxJSON.setMsg("添加购物车成功");
+            }
+
         }catch (Exception e){
             ajaxJSON.setSuccess(false);
             ajaxJSON.setMsg("添加购物车失败"+e.getCause());
@@ -90,6 +102,24 @@ public class ShoppingCartControlelr {
             ajaxJSON.setSuccess(false);
             ajaxJSON.setMsg("删除失败"+e.getCause());
         }
+        return ajaxJSON;
+    }
+
+    /**
+     * 更新购物车信息（修改购物车商品数量）
+     */
+    @RequestMapping(value = "updateCartNums",method = RequestMethod.PUT)
+    public AjaxJSON updateCartNums(@RequestParam Map<String,Object> param){
+        AjaxJSON ajaxJSON=new AjaxJSON();
+
+        try {
+            shoppingCartMapper.updateCartNums(param);
+            ajaxJSON.setMsg("修改成功");
+        }catch (Exception e){
+            ajaxJSON.setMsg("修改失败"+e.getCause());
+            ajaxJSON.setSuccess(false);
+        }
+
         return ajaxJSON;
     }
 

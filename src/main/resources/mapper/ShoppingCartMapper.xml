@@ -8,12 +8,20 @@
         WHERE sc.user_id=#{userId}
     </select>
 
+    <select id="isExistPets" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT nums FROM t_b_shopping_cart WHERE user_id=#{userId} AND pets_id=#{petsId}
+    </select>
+
     <insert id="addCart" parameterType="java.util.Map">
-        INSERT INTO t_b_shopping_cart(id,user_id,pets_id,nums)VALUE(#{id},#{userId},#{petsId},#{nums})
+        INSERT INTO t_b_shopping_cart(id,user_id,pets_id,nums)VALUE(#{id},#{userId},#{petsId},1)
     </insert>
 
     <delete id="delPetFromCart" parameterType="java.util.Map">
         DELETE FROM t_b_shopping_cart WHERE pets_id=#{petsId}
     </delete>
+
+    <update id="updateCartNums" parameterType="java.util.Map">
+        UPDATE t_b_shopping_cart SET nums=#{nums} WHERE pets_id=#{petsId} AND user_id=#{userId}
+    </update>
 
 </mapper>
