@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.springboot.demo.dao.ShoppingCartMapper" >
 
-    <select id="getCartMsgById" parameterType="java.util.Map" resultType="java.util.List">
-        SELECT pets_id,pets_desc,pets_price,img_path,nums FROM t_b_shopping_cart sc
+    <select id="getCartMsgById" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT pets_id as id,pets_desc,pets_price,img_path,nums as pets_num FROM t_b_shopping_cart sc
         INNER JOIN t_b_pets p ON sc.pets_id=p.id
         WHERE sc.user_id=#{userId}
     </select>

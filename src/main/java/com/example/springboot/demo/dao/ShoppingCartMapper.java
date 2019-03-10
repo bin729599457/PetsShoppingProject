@@ -4,6 +4,7 @@ import com.example.springboot.demo.domain.TBPets;
 import com.example.springboot.demo.domain.TBShoppingCart;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
+import sun.nio.cs.ext.MacArabic;
 
 import java.util.List;
 import java.util.Map;
@@ -12,7 +13,7 @@ import java.util.Map;
 @Repository
 public interface ShoppingCartMapper {
 
-    List<TBShoppingCart> getCartMsgById(Map param);
+    List<Map> getCartMsgById(Map param);
 
     void addCart(Map param);
 

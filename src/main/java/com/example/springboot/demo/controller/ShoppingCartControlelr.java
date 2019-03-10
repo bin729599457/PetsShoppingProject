@@ -68,7 +68,7 @@ public class ShoppingCartControlelr {
         AjaxJSON ajaxJSON=new AjaxJSON();
 
         try {
-            List<TBShoppingCart> tbShoppingCarts=shoppingCartMapper.getCartMsgById(param);
+            List<Map> tbShoppingCarts=shoppingCartMapper.getCartMsgById(param);
 
             //分页 需要分页功能添加pages:页数以及rows每页的size参数
             if(param.get("pages")!=null||param.get("rows")!=null){
