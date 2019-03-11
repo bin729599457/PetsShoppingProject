@@ -5,6 +5,9 @@ import com.example.springboot.demo.domain.AjaxJSON;
 import com.example.springboot.demo.domain.TBPets;
 import com.example.springboot.demo.domain.TBShoppingCart;
 import com.example.springboot.demo.util.CurrPage;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +32,12 @@ public class ShoppingCartControlelr {
      * @return
      */
     @RequestMapping(value = "addCart",method = RequestMethod.POST)
+    @ApiOperation(value = "用户添加宠物进入购物车")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "param",required = false),
+            @ApiImplicitParam(name = "userId", value = "用户ID", dataType = "varchar", required = true),
+            @ApiImplicitParam(name = "petsId", value = "宠物ID", dataType = "varchar", required = true)
+    })
     public AjaxJSON addCart(@RequestParam Map<String,Object> param){
 
         AjaxJSON ajaxJSON=new AjaxJSON();
@@ -62,23 +71,29 @@ public class ShoppingCartControlelr {
      * @param param
      * @return
      */
-    @RequestMapping(value = "getCartMsgById",method = RequestMethod.GET)
+    @RequestMapping(value = "getCartMsgById",method = RequestMethod.POST)
+    @ApiOperation(value = "用户查看购物车")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "param",required = false),
+            @ApiImplicitParam(name = "userId", value = "用户ID", dataType = "varchar", required = true)
+    })
     public AjaxJSON getCartMsgById(@RequestParam Map<String,Object> param){
 
         AjaxJSON ajaxJSON=new AjaxJSON();
 
         try {
-            List<Map> tbShoppingCarts=shoppingCartMapper.getCartMsgById(param);
 
-            //分页 需要分页功能添加pages:页数以及rows每页的size参数
-            if(param.get("pages")!=null||param.get("rows")!=null){
-                int pages= Integer.parseInt(param.get("pages").toString());
-                int rows= Integer.parseInt(param.get("rows").toString());
-                ajaxJSON.setObj(CurrPage.queryByPage(tbShoppingCarts,pages,rows));
-            }else{
-                ajaxJSON.setObj(tbShoppingCarts);
+            if(param.get("pages")!=null||param.get("rows")!=null) {
+                int pages = Integer.parseInt(param.get("pages").toString());
+                int rows = Integer.parseInt(param.get("rows").toString());
+                param.put("firstResult", (pages - 1) * rows);
+                param.put("maxResults", pages * rows);
             }
+            List<Map> tbShoppingCarts=shoppingCartMapper.getCartMsgById(param);
+            int total= Integer.parseInt(shoppingCartMapper.getTotal().get("total").toString());
 
+            ajaxJSON.setObj(tbShoppingCarts);
+            ajaxJSON.setTotal(total);
             ajaxJSON.setMsg("查询成功");
         }catch (Exception e){
             ajaxJSON.setSuccess(false);
@@ -91,6 +106,11 @@ public class ShoppingCartControlelr {
     /**
      * 删除购物车宠物
      */
+    @ApiOperation(value = "用户删除购物车宠物")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "param",required = false),
+            @ApiImplicitParam(name = "petsId", value = "宠物ID", dataType = "varchar", required = true)
+    })
     @RequestMapping(value = "delPetFromCart",method = RequestMethod.DELETE)
     public AjaxJSON delPetFromCart(@RequestParam Map<String,Object> param){
         AjaxJSON ajaxJSON=new AjaxJSON();
@@ -109,6 +129,13 @@ public class ShoppingCartControlelr {
      * 更新购物车信息（修改购物车商品数量）
      */
     @RequestMapping(value = "updateCartNums",method = RequestMethod.PUT)
+    @ApiOperation(value = "更新购物车信息（修改购物车商品数量)")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "param",required = false),
+            @ApiImplicitParam(name = "userId", value = "用户ID", dataType = "varchar", required = true),
+            @ApiImplicitParam(name = "petsId", value = "宠物ID", dataType = "varchar", required = true),
+            @ApiImplicitParam(name = "nums", value = "数量", dataType = "int", required = true)
+    })
     public AjaxJSON updateCartNums(@RequestParam Map<String,Object> param){
         AjaxJSON ajaxJSON=new AjaxJSON();
 

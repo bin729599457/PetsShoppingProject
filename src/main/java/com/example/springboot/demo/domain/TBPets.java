@@ -6,7 +6,7 @@ public class TBPets {
     private String petsDesc;
     private Integer petsPrice;
     private Integer petsNum;
-    private String petsImgUrl;
+    private String imgPath;
     private Integer isHot;
 
     public long getId() {
@@ -41,12 +41,16 @@ public class TBPets {
         this.petsNum = petsNum;
     }
 
-    public String getPetsImgUrl() {
-        return petsImgUrl;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public void setPetsImgUrl(String petsImgUrl) {
-        this.petsImgUrl = petsImgUrl;
+    public String getImgPath() {
+        return imgPath;
+    }
+
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
     }
 
     public Integer getIsHot() {

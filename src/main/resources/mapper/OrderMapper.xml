@@ -4,6 +4,7 @@
 
     <select id="getAllOrders" resultType="java.util.Map">
         SELECT pets_desc,pets_price,pets_num,pets_img_url,is_hot FROM t_b_pets
+        <if test="firstResult!=null">LIMIT #{firstResult},#{maxResults}</if>
     </select>
 
 </mapper>

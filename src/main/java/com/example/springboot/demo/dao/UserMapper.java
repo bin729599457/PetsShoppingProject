@@ -12,17 +12,18 @@ import java.util.Map;
 @Repository
 public interface UserMapper {
 
-    TBUser selectUserByName();
 
-    List<TBUser> getAllUsers();
+    List<TBUser> getAllUsers(Map param);
 
     void addUser(Map param);
 
-    Map userLogin(Map param);
+    TBUser userLogin(Map param);
 
-    Map getSingleUsersInfo(Map param);
+    TBUser getSingleUsersInfo(Map param);
 
-    Map forgetPassword(Map param);
+    TBUser forgetPassword(Map param);
+
+    Map getTotal();
 
     void updateMsg(Map param);
 

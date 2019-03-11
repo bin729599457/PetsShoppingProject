@@ -2,15 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.springboot.demo.dao.PetsMapper" >
 
-    <select id="getAllPets" resultType="java.util.List">
-        SELECT pets_desc,pets_price,pets_num,pets_img_url,is_hot FROM t_b_pets
+    <select id="getAllPets" resultType="TBPets">
+        SELECT id,pets_desc,pets_price,pets_num,img_path,is_hot FROM t_b_pets
+        <if test="firstResult!=null">
+            LIMIT #{firstResult},#{maxResults}
+        </if>
     </select>
 
-    <select id="getSinglePetInfo" parameterType="java.util.Map" resultType="java.util.Map">
+    <select id="getTotal" resultType="java.util.Map">
+        SELECT COUNT(1)as total FROM t_b_pets
+    </select>
+
+    <select id="getSinglePetInfo" parameterType="java.util.Map" resultType="TBPets">
         SELECT pets_desc,pets_price,pets_num,pets_img_url,is_hot FROM t_b_pets WHERE id=#{id}
     </select>
 
-    <update id="updateMsg" parameterType="java.util.Map">
+    <update id="updatePetMsg" parameterType="java.util.Map">
         UPDATE t_b_pets
         <trim prefix="set" suffixOverrides=",">
             <if test="petsDesc!=null">pets_desc = #{petsDesc},</if>

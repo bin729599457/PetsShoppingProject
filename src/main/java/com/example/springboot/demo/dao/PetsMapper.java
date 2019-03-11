@@ -18,7 +18,9 @@ public interface PetsMapper {
 
     void updatePetMsg(Map param);
 
-    Map getSinglePetInfo(Map param);
+    TBPets getSinglePetInfo(Map param);
+
+    Map getTotal();
 
     void delPet(Map param);
 
