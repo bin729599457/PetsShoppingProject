@@ -3,7 +3,7 @@
 <mapper namespace="com.example.springboot.demo.dao.PetsMapper" >
 
     <select id="getAllPets" parameterType="java.util.Map" resultType="TBPets">
-        SELECT id,pets_price,pets_num,img_path,is_hot FROM t_b_pets
+        SELECT id,pets_desc,pets_price,pets_num,img_path,is_hot FROM t_b_pets
         <if test="firstResult!=null">
             LIMIT #{firstResult},#{maxResults}
         </if>

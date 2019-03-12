@@ -193,7 +193,7 @@ public class UserController {
             int pages= Integer.parseInt(param.get("pages").toString());
             int rows= Integer.parseInt(param.get("rows").toString());
             param.put("firstResult",(pages-1)*rows);
-            param.put("maxResults",pages*rows);
+            param.put("maxResults",rows);
         }
 
         tbUserList=userMapper.getAllUsers(param);

@@ -88,7 +88,7 @@ public class OrderController {
             int pages= Integer.parseInt(param.get("pages").toString());
             int rows= Integer.parseInt(param.get("rows").toString());
             param.put("firstResult",(pages-1)*rows);
-            param.put("maxResults",pages*rows);
+            param.put("maxResults",rows);
         }
         tbOrders=orderMapper.getAllOrders(param);
         int total= Integer.parseInt(orderMapper.getTotal().get("total").toString());

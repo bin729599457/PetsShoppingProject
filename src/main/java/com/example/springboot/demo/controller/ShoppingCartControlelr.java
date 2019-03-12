@@ -89,7 +89,7 @@ public class ShoppingCartControlelr {
                 int pages = Integer.parseInt(param.get("pages").toString());
                 int rows = Integer.parseInt(param.get("rows").toString());
                 param.put("firstResult", (pages - 1) * rows);
-                param.put("maxResults", pages * rows);
+                param.put("maxResults", rows);
             }
             List<Map> tbShoppingCarts=shoppingCartMapper.getCartMsgById(param);
             int total= Integer.parseInt(shoppingCartMapper.getTotal().get("total").toString());
