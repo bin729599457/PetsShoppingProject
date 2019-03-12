@@ -3,6 +3,7 @@ package com.example.springboot.demo.controller;
 import com.example.springboot.demo.dao.OrderMapper;
 import com.example.springboot.demo.domain.AjaxJSON;
 import com.example.springboot.demo.domain.TBOrder;
+import com.example.springboot.demo.domain.TBPets;
 import com.example.springboot.demo.domain.TBUser;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -94,28 +95,66 @@ public class OrderController {
         int total= Integer.parseInt(orderMapper.getTotal().get("total").toString());
 
         ajaxJSON.setObj(tbOrders);
+        ajaxJSON.setTotal(total);
         ajaxJSON.setSuccess(true);
         ajaxJSON.setMsg("查询成功");
         return ajaxJSON;
     }
 
+
+    /**
+     * 获取订单详细信息
+     */
+    @ApiOperation(value = "获取订单详细信息")
+    @ApiImplicitParams ({
+            @ApiImplicitParam(name = "param",required = false, paramType = "body"),
+            @ApiImplicitParam(name = "rows", value = "页大小", dataType = "int", required = false),
+            @ApiImplicitParam(name = "orderId", value = "订单ID", dataType = "varchar", required = true)
+    })
+    @RequestMapping(value = "getOrderDetail",method = RequestMethod.POST)
+    public AjaxJSON getOrderDetail(@RequestParam Map<String,Object> param){
+        AjaxJSON ajaxJSON=new AjaxJSON();
+
+        if(param.get("pages")!=null||param.get("rows")!=null){
+            int pages= Integer.parseInt(param.get("pages").toString());
+            int rows= Integer.parseInt(param.get("rows").toString());
+            param.put("firstResult",(pages-1)*rows);
+            param.put("maxResults",rows);
+        }
+        TBOrder tbOrder=orderMapper.getOrderDetail(param);
+        List<TBPets> tbPets=orderMapper.getOrderPetInfo(param);
+        Map<String,Object> resultMap=new HashMap<>();
+        resultMap.put("orderMsg",tbOrder);
+        resultMap.put("orderPetInfo",tbPets);
+
+        ajaxJSON.setObj(resultMap);
+        ajaxJSON.setSuccess(true);
+        ajaxJSON.setMsg("查询成功");
+        return ajaxJSON;
+    }
+
+
+
     /**
      * 管理员修改订单信息
      */
-    @ApiOperation(value = "管理员修改订单信息",notes = "password:密码;userName:用户名称;phone:手机;address:地址")
+    @ApiOperation(value = "管理员修改订单信息")
     @ApiImplicitParams ({
             @ApiImplicitParam(name = "param",required = false),
-            @ApiImplicitParam(name = "id", value = "需要修改的用户ID", dataType = "varchar", required = true,paramType = "JSON"),
-            @ApiImplicitParam(name = "password", value = "密码", dataType = "varchar", required = false, paramType = "JSON"),
-            @ApiImplicitParam(name = "userName", value = "用户名称", dataType = "varchar", required = false, paramType = "body"),
-            @ApiImplicitParam(name = "phone", value = "手机", dataType = "varchar", required = false, paramType = "body"),
-            @ApiImplicitParam(name = "address", value = "地址", dataType = "varchar", required = false, paramType = "body")
+            @ApiImplicitParam(name = "orderId", value = "订单ID", dataType = "varchar", required = true,paramType = "JSON"),
+            @ApiImplicitParam(name = "address", value = "订单地址", dataType = "varchar", required = false,paramType = "JSON"),
+            @ApiImplicitParam(name = "phone", value = "订单收货人电话", dataType = "varchar", required = false,paramType = "JSON"),
+            @ApiImplicitParam(name = "receiverName", value = "收货人名字", dataType = "varchar", required = false,paramType = "JSON"),
+            @ApiImplicitParam(name = "status", value = "订单状态", dataType = "varchar", required = false, paramType = "body")
     })
     @RequestMapping(value = "updateOrders",method = RequestMethod.PUT)
     public AjaxJSON updateOrders(@RequestParam Map<String,Object> param){
         AjaxJSON ajaxJSON=new AjaxJSON();
 
         try {
+
+            orderMapper.updateOrderMsg(param);
+
             ajaxJSON.setMsg("修改成功");
         }catch (Exception e){
             ajaxJSON.setMsg("修改失败"+e.getCause());

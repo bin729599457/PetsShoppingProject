@@ -6,7 +6,7 @@ public class TBOrder {
 
     private long id;
     private Integer status;
-    private Integer customerId;
+    private long customerId;
     private Date addTime;
     private Date payTime;
     private Integer sumPrice;
@@ -30,11 +30,11 @@ public class TBOrder {
         this.status = status;
     }
 
-    public Integer getCustomerId() {
+    public long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(Integer customerId) {
+    public void setCustomerId(long customerId) {
         this.customerId = customerId;
     }
 

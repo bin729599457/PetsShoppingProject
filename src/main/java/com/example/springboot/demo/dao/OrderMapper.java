@@ -20,4 +20,10 @@ public interface OrderMapper {
 
     void addPetsInfo(Map param);
 
+    void updateOrderMsg(Map param);
+
+    TBOrder getOrderDetail(Map param);
+
+    List<TBPets> getOrderPetInfo(Map param);
+
 }
