@@ -12,7 +12,7 @@ import java.util.Map;
 @Repository
 public interface PetsMapper {
 
-    List<TBPets> getAllPets();
+    List<TBPets> getAllPets(Map param);
 
     void addPets(Map param);
 

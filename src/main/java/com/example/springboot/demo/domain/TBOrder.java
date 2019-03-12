@@ -11,6 +11,8 @@ public class TBOrder {
     private Date payTime;
     private Integer sumPrice;
     private String address;
+    private String phone;
+    private String receiverName;
 
     public long getId() {
         return id;
@@ -66,5 +68,25 @@ public class TBOrder {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getReceiverName() {
+        return receiverName;
+    }
+
+    public void setReceiverName(String receiverName) {
+        this.receiverName = receiverName;
     }
 }

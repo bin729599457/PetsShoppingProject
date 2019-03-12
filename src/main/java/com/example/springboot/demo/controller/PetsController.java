@@ -45,9 +45,9 @@ public class PetsController {
                 int pages = Integer.parseInt(param.get("pages").toString());
                 int rows = Integer.parseInt(param.get("rows").toString());
                 param.put("firstResult", (pages - 1) * rows);
-                param.put("maxResults", pages * rows);
+                param.put("maxResults", rows);
             }
-            List<TBPets>tbPetsList=petsMapper.getAllPets();
+            List<TBPets>tbPetsList=petsMapper.getAllPets(param);
             int total= Integer.parseInt(petsMapper.getTotal().get("total").toString());
 
             ajaxJSON.setMsg("查询成功");

@@ -36,7 +36,8 @@ public class ShoppingCartControlelr {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "param",required = false),
             @ApiImplicitParam(name = "userId", value = "用户ID", dataType = "varchar", required = true),
-            @ApiImplicitParam(name = "petsId", value = "宠物ID", dataType = "varchar", required = true)
+            @ApiImplicitParam(name = "petsId", value = "宠物ID", dataType = "varchar", required = true),
+            @ApiImplicitParam(name = "nums", value = "商品数量", dataType = "int", required = true)
     })
     public AjaxJSON addCart(@RequestParam Map<String,Object> param){
 
@@ -48,7 +49,8 @@ public class ShoppingCartControlelr {
             //非空，购物车已经存在该商品
             if(isExist!=null){
                 int num= (int) isExist.get("nums");
-                param.put("nums",++num);
+                int addNum= Integer.parseInt(param.get("nums").toString());
+                param.put("nums",num+addNum);
                 shoppingCartMapper.updateCartNums(param);
                 ajaxJSON.setMsg("添加购物车成功");
             }else {
@@ -109,7 +111,8 @@ public class ShoppingCartControlelr {
     @ApiOperation(value = "用户删除购物车宠物")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "param",required = false),
-            @ApiImplicitParam(name = "petsId", value = "宠物ID", dataType = "varchar", required = true)
+            @ApiImplicitParam(name = "petsId", value = "宠物ID", dataType = "varchar", required = true),
+            @ApiImplicitParam(name = "userId", value = "用户ID", dataType = "varchar", required = true)
     })
     @RequestMapping(value = "delPetFromCart",method = RequestMethod.DELETE)
     public AjaxJSON delPetFromCart(@RequestParam Map<String,Object> param){

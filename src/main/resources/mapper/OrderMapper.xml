@@ -7,4 +7,14 @@
         <if test="firstResult!=null">LIMIT #{firstResult},#{maxResults}</if>
     </select>
 
+    <insert id="makeOrder" parameterType="java.util.Map">
+        INSERT INTO t_b_order(id,status,customer_id,add_time,sum_price,address,phone,receiver_name)VALUE
+        (#{id},#{status},#{customerId},#{addTime},#{sumPrice},#{address},#{phone},#{receiverName})
+    </insert>
+
+    <insert id="addPetsInfo" parameterType="java.util.Map">
+        INSERT INTO t_b_pets_order_info(id,order_id,pets_id,pets_nums)VALUE
+        (#{id},#{orderId},#{petsId},#{petsNums})
+    </insert>
+
 </mapper>

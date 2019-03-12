@@ -3,7 +3,7 @@
 <mapper namespace="com.example.springboot.demo.dao.UserMapper" >
 
     <select id="getSingleUsersInfo" resultType="TBUser">
-        SELECT account,user_name,phone,create_time,address FROM t_b_user WHERE id=#{id}
+        SELECT id,account,user_name,phone,create_time,address FROM t_b_user WHERE id=#{id}
     </select>
 
     <select id="getTotal" resultType="java.util.Map">

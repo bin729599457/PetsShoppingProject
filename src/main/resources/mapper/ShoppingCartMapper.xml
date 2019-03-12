@@ -20,11 +20,11 @@
     </select>
 
     <insert id="addCart" parameterType="java.util.Map">
-        INSERT INTO t_b_shopping_cart(id,user_id,pets_id,nums)VALUE(#{id},#{userId},#{petsId},1)
+        INSERT INTO t_b_shopping_cart(id,user_id,pets_id,nums)VALUE(#{id},#{userId},#{petsId},#{nums})
     </insert>
 
     <delete id="delPetFromCart" parameterType="java.util.Map">
-        DELETE FROM t_b_shopping_cart WHERE pets_id=#{petsId}
+        DELETE FROM t_b_shopping_cart WHERE pets_id=#{petsId} AND user_id=#{userId}
     </delete>
 
     <update id="updateCartNums" parameterType="java.util.Map">
