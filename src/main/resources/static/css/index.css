@@ -1,0 +1,147 @@
+body {
+    min-width: 1200px;
+    overflow: auto;
+}
+.width1200 {
+    margin: 0 auto;
+    width: 1200px;
+}
+/*头部*/
+.header {
+    display: inline-block;
+    width: 100%;
+    height: 80px;
+    line-height: 80px;
+    background-color: #fff;
+}
+/*头部-左边logo*/
+.header .logo {
+    margin-left: 50px;
+    float: left;
+    color: #44883F;
+    font-size: 20px;
+    cursor: pointer;
+}
+/*头部-右边*/
+.header .personal {
+    margin-right: 50px;
+    float: right;
+}
+/*头部-右边-登录/注册*/
+.header .personal a {
+    display: none;
+    color: rgb(171, 171, 172);
+}
+/*头部-右边-个人中心*/
+.header .personal .personal-center {
+    position: relative;
+    cursor: pointer;
+}
+.header .personal .personal-center span {
+    color: #ababac;
+    font-size: 14px;
+}
+/*头部-右边-个人中心-弹出框*/
+.header .personal .personal-center .dialog {
+    display: none;
+    padding: 5px 0 5px;
+    position: absolute;
+    left: -10px;
+    top: 60px;
+    width: 120px;
+    z-index: 9;
+    background-color: #fff;
+    border: 1px solid #a2a2a2;
+    border-radius: 5px;
+}
+.header .personal .personal-center .dialog div {
+    float: left;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    text-align: center;
+    color: #ababac;
+    cursor: pointer;
+}
+.header .personal .personal-center .dialog div:hover {
+    color: #44883F;
+}
+/*中间内容*/
+.content {
+    background: #fff;
+}
+/*中间内容-轮播图*/
+.content .swiper-container {
+    display: inline-block;
+    width: 100%;
+    height: auto;
+}
+/*中间内容-商品列表*/
+.content .list {
+    margin: 0;
+    padding: 0;
+}
+.content .list .item {
+    margin: 50px 48px;
+    display: inline-block;
+    width: 300px;
+}
+.content .list .item .img {
+    display: inline-block;
+    width: 300px;
+    height: 300px;
+    cursor: pointer;
+}
+.content .list .item .title {
+    margin-top: 15px;
+    font-size: 18px;
+    color: #3e3a39;
+    line-height: 1em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.content .list .item .title:hover {
+    color: #44883F;
+}
+.content .list .item .price {
+    margin-top: 10px;
+    font-size: 20px;
+    color: #dd1944;
+    font-family: Arial;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+}
+/*loading*/
+.loading {
+    display: inline-block;
+    width: 100%;
+    margin: 40px 0;
+    border: 1px solid #e7e7e7;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    font-size: 14px;
+    background-color: #f0f0f0;
+    color: #adadad;
+    cursor: pointer;
+}
+.loading:hover {
+    background-color: #e7e7e7;
+}
+/*尾部*/
+.footer {
+    display: inline-block;
+    width: 100%;
+    height: 100px;
+    line-height: 100px;
+    font-size: 14px;
+    text-align: center;
+    color: #ababac;
+    background-color: #f3f3f2;
+}

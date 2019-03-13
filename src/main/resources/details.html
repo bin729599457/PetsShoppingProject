@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width =device-width, initial-scale=1, maximum-scale=1"/>
+    <!--<link rel="shortcut icon" href="./favicon.ico">-->
+    <title>宠物详情</title>
+    <link rel="stylesheet" href="./static/lib/layui/css/layui.css" type="text/css" />
+    <link rel="stylesheet" href="./static/css/details.css" type="text/css" />
+</head>
+<body>
+<div class="header">
+    <div class="width1200">
+        <div id="toIndex" class="logo">宠物商店</div>
+        <div class="personal">
+            <div class="login-register">
+                <a id="loginRegister" href="./login.html">登录/注册</a>
+                <div class="personal-center">
+                    <img id="personal" src="./static/img/personal.png">
+                    <span>个人中心</span>
+                    <div id="personalDialog" class="dialog">
+                        <div id="toOrder" class="order">我的订单</div>
+                        <div id="toCart" class="shopping-cart">我的购物车</div>
+                        <div id="toInformation" class="personal-information">个人信息管理</div>
+                        <div id="logout">退出登录</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="width1200">
+        <div class="container" id="detailsContainer">
+            <div class="img">
+                <img src="" data-id="" />
+            </div>
+            <div class="description">
+                <div class="title"></div>
+                <div class="prize">价格<span>￥</span></div>
+                <div class="num">
+                    数量<span class="decrease">-</span><span class="data-num">1</span><span class="increase">+</span>
+                </div>
+                <div class="btn-group">
+                    <div id="buy" class="buy">立即购买</div>
+                    <div id="cart" class="cart">加入购物车</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="width1200">
+        Copyright © 2018. All Rights Reserved.
+    </div>
+</div>
+
+<script src="./static/lib/js.cookies.js"></script>
+<script src="./static/lib/jquery.min.js"></script>
+<script src="./static/lib/layui/layui.all.js"></script>
+<script src="./static/js/details.js"></script>
+</body>
+</html>

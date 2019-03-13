@@ -3,31 +3,34 @@ package com.example.springboot.demo.domain;
 public class TBPetsOrderInfo {
 
     private long id;
-    private Integer orderId;
-    private Integer petsId;
+    private long orderId;
+    private long petsId;
     private Integer petsNums;
+
+    public TBPetsOrderInfo() {
+    }
 
     public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public Integer getOrderId() {
+    public long getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Integer orderId) {
+    public void setOrderId(long orderId) {
         this.orderId = orderId;
     }
 
-    public Integer getPetsId() {
+    public long getPetsId() {
         return petsId;
     }
 
-    public void setPetsId(Integer petsId) {
+    public void setPetsId(long petsId) {
         this.petsId = petsId;
     }
 

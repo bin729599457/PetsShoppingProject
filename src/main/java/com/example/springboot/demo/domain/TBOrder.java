@@ -1,5 +1,6 @@
 package com.example.springboot.demo.domain;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class TBOrder {
@@ -7,8 +8,8 @@ public class TBOrder {
     private long id;
     private Integer status;
     private long customerId;
-    private Date addTime;
-    private Date payTime;
+    private Timestamp addTime;
+    private Timestamp payTime;
     private Integer sumPrice;
     private String address;
     private String phone;
@@ -38,19 +39,19 @@ public class TBOrder {
         this.customerId = customerId;
     }
 
-    public Date getAddTime() {
+    public Timestamp getAddTime() {
         return addTime;
     }
 
-    public void setAddTime(Date addTime) {
+    public void setAddTime(Timestamp addTime) {
         this.addTime = addTime;
     }
 
-    public Date getPayTime() {
+    public Timestamp getPayTime() {
         return payTime;
     }
 
-    public void setPayTime(Date payTime) {
+    public void setPayTime(Timestamp payTime) {
         this.payTime = payTime;
     }
 

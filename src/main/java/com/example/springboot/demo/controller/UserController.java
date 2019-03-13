@@ -110,14 +110,12 @@ public class UserController {
         return ajaxJSON;
     }
 
-    @ApiOperation(value = "用户登录" ,notes = "account:帐号;password:密码")
+    @ApiOperation(value = "注销登录")
     @ApiImplicitParams ({
-            @ApiImplicitParam(name = "param",required = false),
-            @ApiImplicitParam(name = "account", value = "帐号", dataType = "varchar", required = true),
-            @ApiImplicitParam(name = "password", value = "密码", dataType = "varchar", required = true)
+            @ApiImplicitParam(name = "param",required = false)
     })
-    @RequestMapping(value = "Exit",method = RequestMethod.POST)
-    public AjaxJSON Exit(@RequestParam Map<String,Object> param){
+    @RequestMapping(value = "logOut",method = RequestMethod.POST)
+    public AjaxJSON logOut(@RequestParam Map<String,Object> param){
 
         AjaxJSON ajaxJSON=new AjaxJSON();
 

@@ -2,6 +2,8 @@ package com.example.springboot.demo.dao;
 
 import com.example.springboot.demo.domain.TBOrder;
 import com.example.springboot.demo.domain.TBPets;
+import com.example.springboot.demo.domain.TBPetsOrderInfo;
+import com.example.springboot.demo.domain.TBSalesCount;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -14,7 +16,7 @@ public interface OrderMapper {
 
     List<TBOrder> getAllOrders(Map param);
 
-    Map getTotal();
+    Map getTotal(Map param);
 
     void makeOrder(Map param);
 
@@ -26,4 +28,17 @@ public interface OrderMapper {
 
     List<TBPets> getOrderPetInfo(Map param);
 
+    List<TBPetsOrderInfo> selectPetsOrderInfoById(Map param);
+
+    void delOrder(Map param);
+
+    void delOrderPetInfo(Map param);
+
+    void creteSalesCount(Map param);
+
+    void updateSalesCount(Map param);
+
+    List<TBSalesCount> salesCount();
+
+    Map isExistCount(Map param);
 }

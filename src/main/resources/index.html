@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width =device-width, initial-scale=1, maximum-scale=1"/>
+    <!--<link rel="shortcut icon" href="./favicon.ico">-->
+    <title>宠物商店-主页</title>
+    <link rel="stylesheet" href="./static/lib/layui/css/layui.css" type="text/css" />
+    <link rel="stylesheet" href="./static/lib/swiper/css/swiper.min.css" type="text/css" />
+    <link rel="stylesheet" href="./static/css/index.css" type="text/css" />
+</head>
+<body>
+<div class="header">
+    <div class="width1200">
+        <div class="logo">宠物商店</div>
+        <div class="personal">
+            <div class="login-register">
+                <a id="loginRegister" href="./login.html">登录/注册</a>
+                <div class="personal-center">
+                    <img id="personal" src="./static/img/personal.png">
+                    <span>个人中心</span>
+                    <div id="personalDialog" class="dialog">
+                        <div id="toOrder" class="order">我的订单</div>
+                        <div id="toCart" class="shopping-cart">我的购物车</div>
+                        <div id="toInformation" class="personal-information">个人信息管理</div>
+                        <div id="logout">退出登录</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="my-swiper">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="./static/img/banner1.jpg" width="100%">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./static/img/banner2.jpg" width="100%">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./static/img/banner3.jpg" width="100%">
+                </div>
+            </div>
+            <!-- 如果需要滚动条 -->
+            <div class="swiper-scrollbar"></div>
+        </div>
+    </div>
+    <div class="list">
+        <div class="width1200" id="list">
+            <!--<div class="item">-->
+                <!--<img src="./static/img/demo1.png" class="img"/>-->
+                <!--<div class="title">柴柴 （日本柴犬）</div>-->
+                <!--<div class="price">¥8888</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+<div class="width1200">
+    <div class="loading" data-all="">
+        加载更多
+    </div>
+</div>
+<div class="footer">
+    <div class="width1200">
+        Copyright © 2018. All Rights Reserved.
+    </div>
+</div>
+
+<script src="./static/lib/js.cookies.js"></script>
+<script src="./static/lib/jquery.min.js"></script>
+<script src="./static/lib/layui/layui.all.js"></script>
+<script src="./static/lib/swiper/js/swiper.min.js"></script>
+<script src="./static/js/index.js"></script>
+<script>
+    var mySwiper = new Swiper ('.swiper-container', {
+        direction: 'horizontal',
+        loop: true,
+        // grabCursor: true,
+        autoplay: true,
+        mousewheel: false,
+        // 如果需要滚动条
+        scrollbar: {
+            el: '.swiper-scrollbar',
+        }
+    })
+</script>
+</body>
+</html>

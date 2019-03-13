@@ -1,0 +1,179 @@
+.width1200 {
+    margin: 0 auto;
+    width: 1200px;
+    text-align: center;
+}
+/*头部*/
+.header {
+    display: inline-block;
+    width: 100%;
+    height: 80px;
+    line-height: 80px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #399C47;
+    background-color: #EDF4ED;
+}
+.header .width1200 {
+    text-align: left !important;
+}
+/*中间内容*/
+.content {
+    margin-top: 150px;
+    padding: 50px 30px 100px;
+    display: inline-block;
+    width: 340px;
+    border: 1px solid #d8d8d8;
+}
+
+/*中间内容-选项卡*/
+.content .tabs {
+    margin-bottom: 20px;
+    display: inline-block;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #ececec
+}
+/*中间内容-选项卡-选项*/
+.content .tabs .tab-item {
+    display: inline-block;
+    width: 48%;
+    font-size: 18px;
+    color: #9b9b9b;
+    text-align: center;
+    cursor: pointer;
+}
+/*中间内容-选项卡-当前选项*/
+.content .tabs .active {
+    border-bottom: 2px solid #494949;
+    color: #333;
+    font-weight: 600
+}
+
+/*中间内容-表单*/
+.content .form {}
+/*中间内容-表单-表单中的input*/
+.content .form .form-input {
+    margin-top: 10px;
+    padding: 10px;
+    display: inline-block;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    border: 1px solid #e4e6e5;
+}
+/*中间内容-表单-找回密码*/
+.content .form .find-pass {
+    position: absolute;
+    right: 5px;
+    top: 10px;
+    height: 100%;
+    line-height: 40px;
+    color: #9b9b9b;
+    cursor: pointer;
+    z-index: 9;
+}
+/*中间内容-表单-按钮*/
+.content .form .btn {
+    margin: 20px 0;
+    display: inline-block;
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+    font-weight: 600;
+    font-size: 15px;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 3px;
+    background-color: #46CB5A;
+}
+.content .form .btn:hover {
+    background-color: #42BD56;
+}
+/*中间内容-登录表单*/
+.login-form {
+    padding: 50px 0 0;
+}
+/*中间内容-注册表单*/
+.register-form {
+    display: none;
+}
+
+/*找回密码弹窗*/
+.pass-dialog {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+    background-color: rgba(0, 0, 0, .5)
+}
+/*找回密码弹窗-表单*/
+.pass-dialog .form {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 50px 80px 100px;
+    display: inline-block;
+    width: 360px;
+    background-color: #fff;
+    border: 1px solid #d8d8d8;
+}
+/*找回密码弹窗-表单-关闭按钮*/
+.pass-dialog .form .close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 26px;
+    color: #9b9b9b;
+    text-align: center;
+    cursor: pointer;
+}
+/*找回密码弹窗-表单-标题*/
+.pass-dialog .form .title {
+    margin-bottom: 30px;
+    display: inline-block;
+    width: 100%;
+    line-height: 1em;
+    font-size: 20px;
+    text-align: center;
+}
+/*找回密码弹窗-表单-表单输入框*/
+.pass-dialog .form .form-input {
+    margin-top: 10px;
+    padding: 10px;
+    display: inline-block;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    border: 1px solid #e4e6e5;
+}
+/*找回密码弹窗-表单-按钮*/
+.pass-dialog .form .btn {
+    margin: 20px 0;
+    display: inline-block;
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+    font-weight: 600;
+    font-size: 15px;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 3px;
+    background-color: #46CB5A;
+}
+.pass-dialog .form .btn:hover {
+    background-color: #42BD56;
+}

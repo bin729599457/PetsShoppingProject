@@ -1,16 +1,14 @@
 package com.example.springboot.demo.controller;
 
 import com.example.springboot.demo.dao.OrderMapper;
-import com.example.springboot.demo.domain.AjaxJSON;
-import com.example.springboot.demo.domain.TBOrder;
-import com.example.springboot.demo.domain.TBPets;
-import com.example.springboot.demo.domain.TBUser;
+import com.example.springboot.demo.domain.*;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
 import java.util.*;
 
 @RestController
@@ -44,7 +42,9 @@ public class OrderController {
             long orderId=System.currentTimeMillis();
             param.put("id",orderId);
             param.put("status",1);
-            param.put("addTime",new Date());
+            Date date=new Date();
+            Timestamp timestamp=new Timestamp(date.getTime());
+            param.put("addTime",timestamp);
             orderMapper.makeOrder(param);
 
             ArrayList<HashMap<String,String>> infoList= (ArrayList) param.get("cartList");
@@ -92,7 +92,7 @@ public class OrderController {
             param.put("maxResults",rows);
         }
         tbOrders=orderMapper.getAllOrders(param);
-        int total= Integer.parseInt(orderMapper.getTotal().get("total").toString());
+        int total= Integer.parseInt(orderMapper.getTotal(param).get("total").toString());
 
         ajaxJSON.setObj(tbOrders);
         ajaxJSON.setTotal(total);
@@ -145,13 +145,42 @@ public class OrderController {
             @ApiImplicitParam(name = "address", value = "订单地址", dataType = "varchar", required = false,paramType = "JSON"),
             @ApiImplicitParam(name = "phone", value = "订单收货人电话", dataType = "varchar", required = false,paramType = "JSON"),
             @ApiImplicitParam(name = "receiverName", value = "收货人名字", dataType = "varchar", required = false,paramType = "JSON"),
-            @ApiImplicitParam(name = "status", value = "订单状态", dataType = "varchar", required = false, paramType = "body")
+            @ApiImplicitParam(name = "status", value = "订单状态", dataType = "int", required = false, paramType = "body")
     })
     @RequestMapping(value = "updateOrders",method = RequestMethod.PUT)
     public AjaxJSON updateOrders(@RequestParam Map<String,Object> param){
         AjaxJSON ajaxJSON=new AjaxJSON();
 
         try {
+
+            //订单状态为2，订单已被支付
+            if(Integer.parseInt(param.get("status").toString())==2){
+                Date date=new Date();
+                Timestamp timestamp=new Timestamp(date.getTime());
+                param.put("payTime",timestamp);
+            }
+
+            //订单状态为3，订单已经完成，创建销量统计
+            if(Integer.parseInt(param.get("status").toString())==3) {
+
+                List<TBPetsOrderInfo> tbPetsOrderInfos=orderMapper.selectPetsOrderInfoById(param);
+                for(TBPetsOrderInfo po:tbPetsOrderInfos){
+                    Map paramMap=new HashMap();
+                    paramMap.put("petsId",po.getPetsId());
+                    Map isExist=orderMapper.isExistCount(paramMap);
+                    if(isExist!=null) {
+                        int num= (int) isExist.get("salesCount");
+                        int addNum= po.getPetsNums();
+                        paramMap.put("salesCount",num+addNum);
+                        orderMapper.updateSalesCount(paramMap);
+                    }else {
+                        paramMap.put("id",System.currentTimeMillis());
+                        paramMap.put("salesCount",po.getPetsNums());
+                        orderMapper.creteSalesCount(paramMap);
+                    }
+                }
+
+            }
 
             orderMapper.updateOrderMsg(param);
 
@@ -161,6 +190,52 @@ public class OrderController {
             ajaxJSON.setSuccess(false);
         }
 
+        return ajaxJSON;
+    }
+
+    /**
+     * 销量统计
+     */
+    @RequestMapping(value = "salesCount",method = RequestMethod.POST)
+    @ApiOperation(value = "销量统计")
+    public AjaxJSON salesCount(){
+        AjaxJSON ajaxJSON=new AjaxJSON();
+
+        try {
+            List<TBSalesCount> tbSalesCounts=orderMapper.salesCount();
+
+            ajaxJSON.setObj(tbSalesCounts);
+            ajaxJSON.setTotal(tbSalesCounts.size());
+            ajaxJSON.setMsg("导出成功");
+        }catch (Exception e){
+            ajaxJSON.setSuccess(false);
+            ajaxJSON.setMsg("导出失败"+e.getCause());
+        }
+        return ajaxJSON;
+    }
+
+
+    /**
+     * 删除订单
+     */
+    @RequestMapping(value = "delOrder",method = RequestMethod.DELETE)
+    @ApiOperation(value = "删除订单")
+    @ApiImplicitParams ({
+            @ApiImplicitParam(name = "param",required = false),
+            @ApiImplicitParam(name = "orderId", value = "订单ID", dataType = "varchar", required = true)
+    })
+    public AjaxJSON delOrder(@RequestParam Map<String,Object> param){
+        AjaxJSON ajaxJSON=new AjaxJSON();
+
+        try {
+            orderMapper.delOrder(param);
+            orderMapper.delOrderPetInfo(param);
+
+            ajaxJSON.setMsg("删除成功");
+        }catch (Exception e){
+            ajaxJSON.setSuccess(false);
+            ajaxJSON.setMsg("删除失败"+e.getCause());
+        }
         return ajaxJSON;
     }
 

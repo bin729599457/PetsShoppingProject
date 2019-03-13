@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width =device-width, initial-scale=1, maximum-scale=1"/>
+    <!--<link rel="shortcut icon" href="./favicon.ico">-->
+    <title>宠物商店-个人信息管理</title>
+    <link rel="stylesheet" href="./static/lib/layui/css/layui.css" type="text/css" />
+    <link rel="stylesheet" href="./static/lib/swiper/css/swiper.min.css" type="text/css" />
+    <link rel="stylesheet" href="./static/css/information.css" type="text/css" />
+</head>
+<body>
+<div class="header">
+    <div class="width1200">
+        <div id="toIndex" class="logo">宠物商店</div>
+        <div class="personal">
+            <div class="login-register">
+                <div class="personal-center">
+                    <img id="personal" src="./static/img/personal.png">
+                    <span>个人中心</span>
+                    <div id="personalDialog" class="dialog">
+                        <div id="toOrder" class="order">我的订单</div>
+                        <div id="toCart" class="shopping-cart">我的购物车</div>
+                        <div id="logout">退出登录</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="width1200">
+        <div class="form normal-form">
+            <div class="row">
+                <span class="label">用户昵称：</span>
+                <input id="username" name="username" type="text" class="form-input" placeholder="用户昵称">
+            </div>
+            <div class="row">
+                <span class="label">密码：</span>
+                <span class="text"><a href="./password.html">修改密码</a></span>
+            </div>
+            <div class="row">
+                <span class="label">手机号码：</span>
+                <span id="phone" class="text"></span>
+            </div>
+            <div class="row" style="height: 80px;">
+                <span class="label">默认地址：</span>
+                <textarea id="address" name="address" class="form-textarea" placeholder="默认地址"></textarea>
+            </div>
+            <div class="btn">更新信息</div>
+        </div>
+    </div>
+</div>
+
+<script src="./static/lib/js.cookies.js"></script>
+<script src="./static/lib/jquery.min.js"></script>
+<script src="./static/lib/layui/layui.all.js"></script>
+<script src="./static/js/information.js"></script>
+</body>
+</html>

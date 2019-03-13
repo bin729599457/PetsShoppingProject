@@ -1,0 +1,191 @@
+body {
+    min-width: 1200px;
+    overflow: auto;
+}
+.width1200 {
+    margin: 0 auto;
+    width: 1200px;
+}
+
+/*头部*/
+.header {
+    display: inline-block;
+    width: 100%;
+    height: 80px;
+    line-height: 80px;
+    background-color: #fff;
+    box-shadow: 0 1px 2px #f3f2f2
+}
+/*头部-左边logo*/
+.header .logo {
+    margin-left: 50px;
+    float: left;
+    color: #44883F;
+    font-size: 20px;
+    cursor: pointer;
+}
+/*头部-右边*/
+.header .personal {
+    margin-right: 50px;
+    float: right;
+}
+/*头部-右边-个人中心*/
+.header .personal .personal-center {
+    position: relative;
+    cursor: pointer;
+}
+.header .personal .personal-center span {
+    color: #ababac;
+    font-size: 14px;
+}
+/*头部-右边-个人中心-弹出框*/
+.header .personal .personal-center .dialog {
+    display: none;
+    padding: 5px 0 5px;
+    position: absolute;
+    left: -10px;
+    top: 60px;
+    width: 120px;
+    z-index: 9;
+    background-color: #fff;
+    border: 1px solid #a2a2a2;
+    border-radius: 5px;
+}
+.header .personal .personal-center .dialog div {
+    float: left;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    text-align: center;
+    color: #ababac;
+    cursor: pointer;
+}
+.header .personal .personal-center .dialog div:hover {
+    color: #44883F;
+}
+
+/*中间内容*/
+.content {
+    margin: 50px;
+    display: inline-block;
+    width: calc(100% - 100px);
+    background: #fff;
+}
+/*中间内容-标题*/
+.content .title {
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #000;
+    font-weight: 700;
+}
+/*中间内容-收货人信息表单-每行*/
+.content .information-form .row {
+    margin: 10px;
+    display: inline-block;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+}
+/*中间内容-收货人信息表单-每行-介绍*/
+.content .information-form .row .label {
+    float: left;
+    width: 100px;
+    text-align: left;
+    /*background-color: #1E9FFF;*/
+}
+/*中间内容-收货人信息表单-输入框*/
+.content .information-form .row .form-input {
+    padding: 10px;
+    float: left;
+    width: 260px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    border: 1px solid #e4e6e5;
+}
+/*中间内容-收货人信息表单-文字*/
+.content .information-form .row .text {
+    float: left;
+    width: 260px;
+    text-align: left;
+}
+/*中间内容-收货人信息表单-多行文本框*/
+.content .information-form .row .form-textarea {
+    padding: 10px;
+    float: left;
+    width: 258px;
+    height: 80px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    border: 1px solid #e4e6e5;
+}
+.cart-table {
+    color: #ababac;
+    width: 1100px;
+    height: 45px;
+    line-height: 45px;
+    background-color: #F3F2F2;
+}
+
+.cart-table td {
+    text-align: center;
+}
+.cart-table .th {
+    border: 1px solid #f3f2f2;
+}
+.cart-table .item-row {
+    margin-top: 1px;
+    height: 120px;
+    line-height: 120px;
+    border: 1px solid #f3f2f2;
+    border-bottom: 0;
+    background-color: #fff;
+}
+.cart-table .item-row:last-child {
+    border-bottom: 1px solid #f3f2f2;
+}
+/*单价、小计*/
+.cart-table .item-row .cart-item-price, .cart-table .item-row .cart-item-amount {
+    color: #dd1944;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.footer {
+    margin-top: 150px;
+    padding: 0 50px;
+    display: inline-block;
+    width: calc(100% - 100px);
+    height: 65px;
+    background-color: #EEEEEE;
+}
+.footer .btn {
+    margin-top: 17px;
+    margin-right: 100px;
+    float: right;
+    width: 145px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    background-color: #dd1944;
+    cursor: pointer;
+}
+.footer .btn:hover {
+    background-color: #b21a38;
+}
+.footer .total {
+    float: left;
+    height: 65px;
+    line-height: 65px;
+    font-size: 14px;
+    color: #000;
+}
+.footer .total span {
+    margin-right: 5px;
+    font-size: 20px;
+    color: #dd1944;
+}

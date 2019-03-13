@@ -1,0 +1,136 @@
+.width1200 {
+    margin: 0 auto;
+    width: 1200px;
+    text-align: center;
+}
+/*头部*/
+.header {
+    display: inline-block;
+    width: 100%;
+    min-width: 1200px;
+    height: 80px;
+    line-height: 80px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #399C47;
+    background-color: #EDF4ED;
+}
+.header .width1200 {
+    text-align: left!important;
+}
+/*头部-左边logo*/
+.header .logo {
+    margin-left: 50px;
+    float: left;
+    color: #44883F;
+    font-size: 20px;
+    cursor: pointer;
+}
+/*头部-右边*/
+.header .personal {
+    margin-right: 50px;
+    float: right;
+}
+/*头部-右边-个人中心*/
+.header .personal .personal-center {
+    position: relative;
+    cursor: pointer;
+}
+.header .personal .personal-center span {
+    color: #ababac;
+    font-size: 14px;
+}
+/*头部-右边-个人中心-弹出框*/
+.header .personal .personal-center .dialog {
+    display: none;
+    padding: 5px 0 5px;
+    position: absolute;
+    left: -10px;
+    top: 60px;
+    width: 120px;
+    z-index: 9;
+    background-color: #fff;
+    border: 1px solid #a2a2a2;
+    border-radius: 5px;
+}
+.header .personal .personal-center .dialog div {
+    float: left;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    text-align: center;
+    color: #ababac;
+    cursor: pointer;
+}
+.header .personal .personal-center .dialog div:hover {
+    color: #44883F;
+}
+
+/*中间内容*/
+.content {
+    margin-top: 50px;
+}
+/*中间内容-表单*/
+.content .form {
+    display: inline-block;
+    width: 360px;
+}
+/*中间内容-表单-每行*/
+.content .form .row {
+    margin: 10px;
+    display: inline-block;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+}
+/*中间内容-表单-每行-介绍*/
+.content .form .row .label {
+    float: left;
+    width: 100px;
+    text-align: left;
+    /*background-color: #1E9FFF;*/
+}
+/*中间内容-表单-输入框*/
+.content .form .row .form-input {
+    padding: 10px;
+    float: left;
+    width: 260px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    border: 1px solid #e4e6e5;
+}
+/*中间内容-表单-文字*/
+.content .form .row .text {
+    float: left;
+    width: 260px;
+    text-align: left;
+}
+/*中间内容-表单-文字-a链接*/
+.content .form .row .text a {
+    color: #399C47;
+}
+/*中间内容-表单-多行文本框*/
+.content .form .row .form-textarea {
+    padding: 10px;
+    float: left;
+    width: 258px;
+    height: 80px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    border: 1px solid #e4e6e5;
+}
+/*中间内容-表单-按钮*/
+.content .form .btn {
+    margin-top: 20px;
+    display: inline-block;
+    width: 200px;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    cursor: pointer;
+    background-color: #41ac52;
+    border-radius: 5px;
+}

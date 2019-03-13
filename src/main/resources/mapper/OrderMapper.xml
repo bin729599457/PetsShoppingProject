@@ -3,7 +3,11 @@
 <mapper namespace="com.example.springboot.demo.dao.OrderMapper" >
 
     <select id="getAllOrders" resultType="TBOrder">
-        SELECT id,status,customer_id,add_time,sum_price,address,phone,receiver_name FROM t_b_order
+        SELECT id,status,customer_id,add_time,pay_time,sum_price,address,phone,receiver_name
+        FROM t_b_order
+        <if test="customerId!=null">
+            WHERE customer_id=#{customerId}
+        </if>
         <if test="firstResult!=null">
             LIMIT #{firstResult},#{maxResults}
         </if>
@@ -11,16 +15,27 @@
 
     <select id="getTotal" resultType="java.util.Map">
         SELECT COUNT(1)as total FROM t_b_order
+        <if test="customerId!=null">
+            WHERE customer_id=#{customerId}
+        </if>
     </select>
 
     <select id="getOrderDetail" resultType="TBOrder">
-        SELECT id,status,customer_id,add_time,sum_price,address,phone,receiver_name FROM t_b_order WHERE id=#{orderId}
+        SELECT id,status,customer_id,add_time,pay_time,sum_price,address,phone,receiver_name FROM t_b_order WHERE id=#{orderId}
     </select>
 
     <select id="getOrderPetInfo" resultType="TBPets">
-        SELECT p.id,pets_desc,pets_price,pets_num,img_path,is_hot,po.pets_nums as petsNums
+        SELECT p.id,pets_desc,pets_price,po.pets_nums as petsNum,img_path,is_hot,po.pets_nums as petsNums
         FROM t_b_pets p INNER JOIN t_b_pets_order_info po
         ON  p.id=po.pets_id  WHERE po.order_id=#{orderId}
+    </select>
+    
+    <select id="selectPetsOrderInfoById" resultType="TBPetsOrderInfo">
+        SELECT id,order_id,pets_id,pets_nums FROM t_b_pets_order_info WHERE order_id=#{orderId}
+    </select>
+
+    <select id="salesCount" resultType="TBSalesCount">
+        SELECT sc.id ,pets_desc as petsDesc,sales_count,pets_id FROM t_b_sales_count sc INNER JOIN t_b_pets pe ON  sc.pets_id=pe.id
     </select>
 
     <insert id="makeOrder" parameterType="java.util.Map">
@@ -35,6 +50,7 @@
             <if test="address!=null">address = #{address},</if>
             <if test="phone!=null">pets_num = #{phone},</if>
             <if test="receiverName!=null">img_path = #{receiverName},</if>
+            <if test="payTime!=null">pay_time = #{payTime},</if>
         </trim>
         WHERE id=#{orderId}
     </update>
@@ -44,4 +60,24 @@
         (#{id},#{orderId},#{petsId},#{petsNums})
     </insert>
 
+    <insert id="creteSalesCount" parameterType="java.util.Map">
+        INSERT INTO t_b_sales_count(id,pets_id,sales_count)VALUE
+        (#{id},#{petsId},#{salesCount})
+    </insert>
+
+    <select id="isExistCount" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT sales_count as salesCount FROM t_b_sales_count WHERE pets_id=#{petsId}
+    </select>
+
+    <delete id="delOrder" parameterType="java.util.Map">
+        DELETE FROM t_b_order WHERE id=#{orderId}
+    </delete>
+
+    <delete id="delOrderPetInfo" parameterType="java.util.Map">
+        DELETE FROM t_b_pets_order_info WHERE order_id=#{orderId}
+    </delete>
+
+    <update id="updateSalesCount" parameterType="java.util.Map">
+        UPDATE t_b_sales_count SET sales_count=#{salesCount} WHERE pets_id=#{petsId}
+    </update>
 </mapper>
