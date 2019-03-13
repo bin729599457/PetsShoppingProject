@@ -202,10 +202,9 @@ public class OrderController {
         AjaxJSON ajaxJSON=new AjaxJSON();
 
         try {
-            List<TBSalesCount> tbSalesCounts=orderMapper.salesCount();
+            Map tbSalesCounts=orderMapper.salesCount();
 
             ajaxJSON.setObj(tbSalesCounts);
-            ajaxJSON.setTotal(tbSalesCounts.size());
             ajaxJSON.setMsg("导出成功");
         }catch (Exception e){
             ajaxJSON.setSuccess(false);

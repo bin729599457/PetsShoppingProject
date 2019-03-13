@@ -38,7 +38,7 @@ public interface OrderMapper {
 
     void updateSalesCount(Map param);
 
-    List<TBSalesCount> salesCount();
+    Map salesCount();
 
     Map isExistCount(Map param);
 }

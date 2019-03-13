@@ -34,9 +34,10 @@
         SELECT id,order_id,pets_id,pets_nums FROM t_b_pets_order_info WHERE order_id=#{orderId}
     </select>
 
-    <select id="salesCount" resultType="TBSalesCount">
-        SELECT sc.id ,pets_desc as petsDesc,sales_count,pets_id FROM t_b_sales_count sc INNER JOIN t_b_pets pe ON  sc.pets_id=pe.id
-    </select>
+    <select id="salesCount" resultType="java.util.Map">
+        SELECT SUM(sc.sales_count*pe.pets_price) as sumPrice,SUM(sales_count)as sumCount
+        FROM t_b_sales_count sc INNER JOIN t_b_pets pe ON  sc.pets_id=pe.id
+  </select>
 
     <insert id="makeOrder" parameterType="java.util.Map">
         INSERT INTO t_b_order(id,status,customer_id,add_time,sum_price,address,phone,receiver_name)VALUE
