@@ -37,6 +37,39 @@
         </table>
     </div>
 </div>
+
+<div class="detail-dialog">
+    <div class="form">
+        <div id="closeDetailDialog" class="close">X</div>
+        <div class="title">订单详情</div>
+        <div class="row">
+            <span class="label">订单号：</span>
+            <span id="idDetail" class="text"></span>
+        </div>
+        <div class="row">
+            <span class="label">订单总价：</span>
+            <span id="sumPriceDetail" class="text">123123</span>
+        </div>
+        <div class="row">
+            <span class="label">订单状态：</span>
+            <span id="statusDetail" class="text"></span>
+        </div>
+        <!--订单的宠物内容-->
+        <div style="margin-top: 20px; max-height: 260px;overflow-y: auto;" id="detailPet">
+            <!--<div class="pet-row">-->
+                <!--<div class="img">-->
+                    <!--<img src="" width="100%">-->
+                <!--</div>-->
+                <!--<div class="description">{{ item.petsDesc }}</div>-->
+                <!--<div class="right">-->
+                    <!--<div class="price">￥{{ Number(item.petsPrice).toFixed(2) }}</div>-->
+                    <!--<div class="num">x{{ item.petsNum }}</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+
 <script src="./static/lib/js.cookies.js"></script>
 <script src="./static/lib/jquery.min.js"></script>
 <script src="./static/lib/layui/layui.all.js"></script>

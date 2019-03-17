@@ -1,5 +1,5 @@
 $(function () {
-    var baseUrl = 'http://leewaiho.com:20002/users'
+    var baseUrl = 'http://localhost:8080/users'
 
     // 获取用户id
     var id = Cookies.get('id')

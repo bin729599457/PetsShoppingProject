@@ -1,5 +1,5 @@
 $(function () {
-    baseUrl = 'http://leewaiho.com:20002/users'
+    baseUrl = 'http://localhost:8080/users'
 
     // 点击了头部的logo
     $('#toIndex').click(function () {
@@ -124,39 +124,23 @@ $(function () {
         if ($('#accountPass').val()) {
             // 判断有没输入手机号码
             if ($('#phonePass').val()) {
-                // 判断有没输入新密码
-                if ($('#passwordPass').val()) {
-                    // 判断有没输入确认密码
-                    if ($('#passwordPass2').val()) {
-                        // 判断密码是否一致
-                        if ($('#passwordPass').val() == $('#passwordPass2').val()) {
-                            // 传给后台的参数
-                            var params = {
-                                account: $('#accountPass').val(),
-                                password: $('#passwordPass').val(),
-                                phone: $('#phonePass').val()
-                            }
-                            $.post(baseUrl + '/forgetPassword', params, function (res) {
-                                console.log(res)
-                                if (res.success) {
-                                    // 关闭弹窗
-                                    $('.pass-dialog').hide()
-                                    // 显示修改成功
-                                    alert('重置密码成功')
-                                }
-                                else {
-                                    alert(res.msg)
-                                }
-                            })
-                        } else {
-                            alert('两次密码不一致')
-                        }
-                    } else {
-                        alert('请输入确认密码')
-                    }
-                } else {
-                    alert('请输入新密码')
+                // 传给后台的参数
+                var params = {
+                    account: $('#accountPass').val(),
+                    phone: $('#phonePass').val()
                 }
+                $.post(baseUrl + '/forgetPassword', params, function (res) {
+                    // console.log(res)
+                    if (res.success) {
+                        // 关闭弹窗
+                        $('.pass-dialog').hide()
+                        // 显示修改成功
+                        alert('你原来的密码为：'+ res.obj.password)
+                    }
+                    else {
+                        alert(res.msg)
+                    }
+                })
             } else {
                 alert('请输入手机号码')
             }

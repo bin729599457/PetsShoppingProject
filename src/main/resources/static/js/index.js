@@ -1,5 +1,5 @@
 $(function () {
-    var baseUrl = 'http://leewaiho.com:20002/pets'
+    var baseUrl = 'http://localhost:8080/pets'
     // 分页数据
     var pages = 1
     var rows = 15

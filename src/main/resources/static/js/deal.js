@@ -1,6 +1,6 @@
 $(function () {
-    var baseUserUrl = 'http://leewaiho.com:20002/users'
-    var baseOrderUrl = 'http://leewaiho.com:20002/order'
+    var baseUserUrl = 'http://localhost:8080/users'
+    var baseOrderUrl = 'http://localhost:8080/order'
 
     // 订单信息
     var list = []
@@ -94,17 +94,17 @@ $(function () {
         }
         // 过滤参数
         var cartList = []
-        var obj = {
-            petsId: '',
-            petsNums: 0
-        }
         for(var i = 0; i < list.length; i++) {
+            var obj = {
+                petsId: '',
+                petsNums: 0
+            }
             obj.petsId = list[i].id
             obj.petsNums = list[i].petsNum
             cartList.push(obj)
         }
         params.cartList = cartList
-
+        // console.log(params)
         $.ajax({
             type: 'POST',
             url: baseOrderUrl + '/makeOrder',

@@ -1,5 +1,5 @@
 $(function () {
-    var baseUrl = 'http://leewaiho.com:20002/shoppingCart'
+    var baseUrl = 'http://localhost:8080/shoppingCart'
 
     // 先判断有没登录
     var id = Cookies.get('id')
@@ -33,6 +33,12 @@ $(function () {
     // 点击了个人中心-个人信息管理
     $('#toInformation').click(function () {
         window.location.href = './information.html'
+    })
+    // 点击了退出登录
+    $('#logout').click(function () {
+        Cookies.remove('id')
+        alert('已退出登录')
+        window.location.href = './index.html'
     })
 
     // 点击了表格的数量的减号按钮
@@ -118,9 +124,11 @@ $(function () {
                 $table.append(th)
                 if (list.length == 0) {
                     $('.content .width1200').append('<div style="text-align: center">购物车里空空的~ 快去挑选你喜欢的商品吧！</div>')
+                    $('.footer .total span').text('¥' + Number(0).toFixed(2))
                     return
                 }
                 var total = 0
+                $('.footer .total span').text('¥' + total.toFixed(2))
                 // 循环表格内容
                 for (var i = 0; i < list.length; i++) {
                     var decrease = list[i].petsNum == 1 ? ' disable' : ''
@@ -138,7 +146,7 @@ $(function () {
                     $table.append(str)
                     total +=  Number(list[i].petsNum * list[i].petsPrice)
                 }
-                // 合计
+                // 更新合计
                 $('.footer .total span').text('¥' + total.toFixed(2))
             } else {
                 alert(res.msg)

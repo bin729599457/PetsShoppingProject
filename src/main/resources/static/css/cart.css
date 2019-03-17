@@ -67,6 +67,7 @@ body {
 
 /*中间内容*/
 .content {
+    margin-bottom: 150px;
     display: inline-block;
     width: 100%;
     background: #fff;

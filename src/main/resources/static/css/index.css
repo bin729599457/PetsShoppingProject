@@ -34,6 +34,7 @@ body {
 }
 /*头部-右边-个人中心*/
 .header .personal .personal-center {
+    display: none;
     position: relative;
     cursor: pointer;
 }

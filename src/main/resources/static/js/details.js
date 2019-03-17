@@ -1,6 +1,6 @@
 $(function () {
-    var basePetUrl = 'http://leewaiho.com:20002/pets'
-    var baseCartUrl = 'http://leewaiho.com:20002/shoppingCart'
+    var basePetUrl = 'http://localhost:8080/pets'
+    var baseCartUrl = 'http://localhost:8080/shoppingCart'
 
     var list = []
 
