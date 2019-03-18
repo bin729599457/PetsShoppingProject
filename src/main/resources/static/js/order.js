@@ -1,5 +1,5 @@
 $(function () {
-    var baseUrl = 'http://localhost:8080/order'
+    var baseUrl = 'http://localhost:8088/order'
 
     // 先判断有没登录
     var id = Cookies.get('id')

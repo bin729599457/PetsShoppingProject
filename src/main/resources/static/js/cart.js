@@ -1,5 +1,5 @@
 $(function () {
-    var baseUrl = 'http://localhost:8080/shoppingCart'
+    var baseUrl = 'http://localhost:8088/shoppingCart'
 
     // 先判断有没登录
     var id = Cookies.get('id')

@@ -1,5 +1,5 @@
 $(function () {
-    baseUrl = 'http://localhost:8080/users'
+    baseUrl = 'http://localhost:8088/users'
 
     // 点击了头部的logo
     $('#toIndex').click(function () {

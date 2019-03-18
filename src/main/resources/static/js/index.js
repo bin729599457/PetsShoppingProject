@@ -1,5 +1,5 @@
 $(function () {
-    var baseUrl = 'http://localhost:8080/pets'
+    var baseUrl = 'http://localhost:8088/pets'
     // 分页数据
     var pages = 1
     var rows = 15

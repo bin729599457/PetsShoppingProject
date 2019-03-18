@@ -1,6 +1,6 @@
 $(function () {
-    var basePetUrl = 'http://localhost:8080/pets'
-    var baseCartUrl = 'http://localhost:8080/shoppingCart'
+    var basePetUrl = 'http://localhost:8088/pets'
+    var baseCartUrl = 'http://localhost:8088/shoppingCart'
 
     var list = []
 

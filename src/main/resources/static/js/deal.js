@@ -1,6 +1,6 @@
 $(function () {
-    var baseUserUrl = 'http://localhost:8080/users'
-    var baseOrderUrl = 'http://localhost:8080/order'
+    var baseUserUrl = 'http://localhost:8088/users'
+    var baseOrderUrl = 'http://localhost:8088/order'
 
     // 订单信息
     var list = []
